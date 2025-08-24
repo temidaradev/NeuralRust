@@ -1,3 +1,5 @@
 pub mod lib;
 
-fn main() {}
+fn main() {
+    print!("Hello Neural Network");
+}
