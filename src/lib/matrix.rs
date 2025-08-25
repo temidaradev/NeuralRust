@@ -1,4 +1,4 @@
-use rand::{Rng, rng};
+use rand::{rng, Rng};
 
 pub struct Matrix {
     pub rows: usize,
@@ -27,6 +27,14 @@ impl Matrix {
         }
 
         res
+    }
+
+    pub fn from(data: Vec<Vec<f64>>) -> Matrix {
+        Matrix {
+            rows: data.len(),
+            cols: data[0].len(),
+            data,
+        }
     }
 
     pub fn multiply(&mut self, other: &Matrix) -> Matrix {
@@ -61,6 +69,8 @@ impl Matrix {
                 res.data[i][j] = self.data[i][j] + other.data[i][j]
             }
         }
+
+        res
     }
 
     pub fn dot_multiply(&mut self, other: &Matrix) -> Matrix {
@@ -91,5 +101,19 @@ impl Matrix {
                 res.data[i][j] = self.data[i][j] - other.data[i][j]
             }
         }
+
+        res
     }
+
+    pub fn map(&mut self, function: &dyn Fn(f64) -> f64) -> Matrix {
+        Matrix::from(
+            (self.data)
+                .clone()
+                .into_iter()
+                .map(|row| row.into_iter().map(|value| function(value)).collect())
+                .collect(),
+        )
+    }
+
+    pub fn transpose(&mut self) -> Matrix {}
 }
