@@ -1,6 +1,6 @@
 use rand::{rng, Rng};
 
-#[derive(clone)]
+#[derive(Clone)]
 pub struct Matrix {
     pub rows: usize,
     pub cols: usize,
@@ -58,16 +58,16 @@ impl Matrix {
         res
     }
 
-    pub fn add(&mut self, other: &Matrix) -> Matrix {
+    pub fn add(&self, other: &Matrix) -> Matrix {
         if self.rows != other.rows || self.cols != other.cols {
-            panic!("attempt to add with incorrect dimensions");
+            panic!("Attempted to add matrix of incorrect dimensions");
         }
 
         let mut res = Matrix::zeros(self.rows, self.cols);
 
         for i in 0..self.rows {
             for j in 0..self.cols {
-                res.data[i][j] = self.data[i][j] + other.data[i][j]
+                res.data[i][j] = self.data[i][j] + other.data[i][j];
             }
         }
 
@@ -116,14 +116,15 @@ impl Matrix {
         )
     }
 
-    pub fn transpose(&mut self) -> Matrix {
-        let mut res = Matrix::zeros(self.cols, self.rows)
-        
+    pub fn transpose(&self) -> Matrix {
+        let mut res = Matrix::zeros(self.cols, self.rows);
+
         for i in 0..self.rows {
             for j in 0..self.cols {
-                res.data[i][j] = self.data[j][i]
+                res.data[j][i] = self.data[i][j];
             }
         }
 
+        res
     }
 }
