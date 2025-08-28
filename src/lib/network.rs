@@ -76,7 +76,7 @@ impl Network<'_> {
     pub fn train(&mut self, inputs: Vec<Vec<f64>>, targets: Vec<Vec<f64>>, epochs: u16) {
         for i in 1..=epochs {
             if epochs < 100 || i % (epochs / 100) == 0 {
-                print!("Epoch {} of {}", i, epochs);
+                println!("Epoch {} of {}", i, epochs);
             }
 
             for j in 0..inputs.len() {
