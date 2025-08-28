@@ -10,7 +10,11 @@ pub struct Network<'a> {
 }
 
 impl Network<'_> {
-    pub fn new<'a>(layers: Vec<usize>, learning_rate: f64, activation: Activation<'a>) -> Network {
+    pub fn new<'a>(
+        layers: Vec<usize>,
+        learning_rate: f64,
+        activation: Activation<'a>,
+    ) -> Network<'a> {
         let mut weights = vec![];
         let mut biases = vec![];
 
