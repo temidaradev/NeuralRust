@@ -17,8 +17,8 @@ pub struct Network<'a> {
     activation: Activation<'a>,
 }
 
-#[derive(serde::Deserialize, serde::Serialize)]
-pub struct SaveData {
+#[derive(Deserialize, Serialize)]
+struct SaveData {
     weights: Vec<Vec<Vec<f64>>>,
     biases: Vec<Vec<Vec<f64>>>,
 }
