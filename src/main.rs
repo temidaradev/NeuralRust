@@ -11,6 +11,7 @@ use crate::lib::activations::{IDENTITY, RELU, SIGMOID, TANH};
 
 pub mod lib;
 fn main() {
+    let file = "gyatt.json".to_string();
     let inputs = vec![
         vec![0.0, 0.0],
         vec![0.0, 1.0],
@@ -19,7 +20,7 @@ fn main() {
     ];
 
     let targets = vec![vec![0.0], vec![1.0], vec![1.0], vec![0.0]];
-    let mut network = Network::new(vec![2, 3, 1], 10.00, SIGMOID);
+    let mut network = Network::new(vec![2, 3, 1], 0.1, SIGMOID);
 
     network.train(inputs, targets, 65535);
 
@@ -27,4 +28,6 @@ fn main() {
     println!("0 and 1: {:?}", network.feed_forward(vec![0.0, 1.0]));
     println!("1 and 0: {:?}", network.feed_forward(vec![1.0, 0.0]));
     println!("1 and 1: {:?}", network.feed_forward(vec![1.0, 1.0]));
+
+    Network::save(&network, file.clone());
 }
