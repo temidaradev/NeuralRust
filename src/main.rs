@@ -2,7 +2,7 @@ use std::vec;
 
 use lib::network::Network;
 
-use crate::lib::activations::SIGMOID;
+use crate::lib::activations::{IDENTITY, RELU, SIGMOID, TANH};
 
 // 0, 0 --> 0
 // 0, 1 --> 1
@@ -19,7 +19,7 @@ fn main() {
     ];
 
     let targets = vec![vec![0.0], vec![1.0], vec![1.0], vec![0.0]];
-    let mut network = Network::new(vec![2, 3, 1], 0.5, SIGMOID);
+    let mut network = Network::new(vec![2, 3, 1], 10.00, SIGMOID);
 
     network.train(inputs, targets, 65535);
 
