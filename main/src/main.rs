@@ -1,17 +1,11 @@
 use std::vec;
 
-use lib::network::Network;
+use network::Network;
 
-use crate::lib::activations::{IDENTITY, RELU, SIGMOID, TANH};
+use activations::{IDENTITY, RELU, SIGMOID, TANH};
 
-// 0, 0 --> 0
-// 0, 1 --> 1
-// 1, 0 --> 1
-// 1, 1 --> 0
-
-pub mod lib;
 fn main() {
-    let file = "gyatt.json".to_string();
+    let file = "log.json".to_string();
     let inputs = vec![
         vec![0.0, 0.0],
         vec![0.0, 1.0],

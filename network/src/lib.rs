@@ -6,7 +6,8 @@ use std::{
 use serde::{Deserialize, Serialize};
 use serde_json::{from_str, json};
 
-use super::{activations::Activation, matrix::Matrix};
+use activations::Activation;
+use matrix::Matrix;
 
 pub struct Network<'a> {
     layers: Vec<usize>,
