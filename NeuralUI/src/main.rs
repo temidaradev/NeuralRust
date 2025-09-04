@@ -5,7 +5,7 @@ fn main() {
     let mut engine = QQmlApplicationEngine::new();
 
     if let Some(engine) = engine.as_mut() {
-        engine.load(&QUrl::from("https://raw.githubusercontent.com/temidaradev/NeuralRust/refs/heads/master/NeuralUI/qml/main.qml?token=GHSAT0AAAAAADKQKRWB5ZVKJQHZLVDAB3P22FZUFXQ"));
+        engine.load(&QUrl::from("NeuralUI/qml/main.qml"));
     }
 
     if let Some(app) = app.as_mut() {

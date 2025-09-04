@@ -1,27 +1,10 @@
-import QtQuick.Controls 2.12
-import QtQuick.Window 2.12
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 
-
-Window {
-    title: qsTr("Hello App")
-    visible: true
+ApplicationWindow {
     height: 480
+    title: qsTr("Hello World")
+    visible: true
     width: 640
-    color: "#e4af79"
-
-    Hello {
-        id: hello
-    }
-
-    Column {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        /* space between widget */
-        spacing: 10
-
-        Button {
-            text: "Say Hello!"
-            onClicked: hello.sayHello()
-        }
-    }
 }
