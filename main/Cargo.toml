@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+eframe = { workspace = true, features = ["default"] }
 network = { workspace = true }
 matrix = { workspace = true }
 activations = { workspace = true }
