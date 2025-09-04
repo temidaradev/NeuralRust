@@ -1,5 +1,6 @@
 use activations::{IDENTITY, RELU, SIGMOID, TANH};
 use eframe::egui;
+use egui_plot::{Line, Plot, PlotPoints};
 use network::Network;
 use std::vec;
 
@@ -25,8 +26,7 @@ fn main() {
 
     Network::save(&network, file.clone());
 }
-
-async fn handle_gui() -> eframe::Result {
+fn handle_gui() -> eframe::Result {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default().with_inner_size([640., 480.]),
         ..Default::default()
@@ -56,6 +56,20 @@ impl Default for NeuralUI {
 impl eframe::App for NeuralUI {
     fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
+            let sin: PlotPoints = (0..1000)
+                .map(|i| {
+                    let x = i as f64 * 0.01;
+                    [x, x.sin()]
+                })
+                .collect();
+
+            // Create a line item with those points
+            let line = Line::new("sin", sin);
+
+            // Create and show the plot, adding the line item via the PlotUi
+            Plot::new("my_plot")
+                .view_aspect(2.0)
+                .show(ui, |plot_ui| plot_ui.line(line));
             ui.heading("My egui Application");
             ui.add(egui::Slider::new(&mut self.bridges, 0..=120).text("age"));
             ui.label(format!("Hello '{}', age {}", self.points, self.bridges));
