@@ -10,5 +10,5 @@ cxx-qt-lib = { workspace = true }
 
 
 [build-dependencies]
-cxx-qt-build = { version = "0.7.2", features = [ "link_qt_object_files" ] } 
+cxx-qt-build = { version = "0.6", features = [ "link_qt_object_files" ] } 
 
