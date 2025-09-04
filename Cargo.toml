@@ -1,5 +1,5 @@
 [workspace]
-members = [
+members = ["NeuralUI",
   "activations",
   "main",
   "matrix",
@@ -11,6 +11,10 @@ resolver = "3"
 serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.143"
 rand = "0.9.2"
+cxx = "1.0.83"
+cxx-qt = "0.6"
+cxx-qt-lib = "0.6"
+cxx-qt-build = "0.6"
 activations = { path = "activations" }
 matrix = { path = "matrix" }
 network = { path = "network" }

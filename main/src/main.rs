@@ -1,6 +1,5 @@
-use std::vec;
-
 use network::Network;
+use std::vec;
 
 use activations::{IDENTITY, RELU, SIGMOID, TANH};
 

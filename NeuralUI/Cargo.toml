@@ -1,0 +1,14 @@
+[package]
+name = "NeuralUI"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cxx = { workspace = true }
+cxx-qt = { workspace = true }
+cxx-qt-lib = { workspace = true }
+
+
+[build-dependencies]
+cxx-qt-build = { version = "0.6", features = [ "link_qt_object_files" ] } 
+
