@@ -120,6 +120,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "cxx-build"
+version = "1.0.175"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d4e2aa0ea9f398b72f329197cfad624fcb16b2538d3ffb0f71f51cd19fa2a512"
+dependencies = [
+ "cc",
+ "codespan-reporting 0.12.0",
+ "indexmap",
+ "proc-macro2",
+ "quote",
+ "scratch",
+ "syn",
+]
+
+[[package]]
 name = "cxx-gen"
 version = "0.7.174"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -134,41 +149,38 @@ dependencies = [
 
 [[package]]
 name = "cxx-qt"
-version = "0.7.2"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1013b28f54b0872a7d1a08e46325ab0603de7aab30bbf41c08bfafb8bb4a2656"
+checksum = "08aa6cda7588b6d17c563b0d2fadc060d4204d04908c0f359ae288857091218d"
 dependencies = [
  "cxx",
- "cxx-qt-build",
  "cxx-qt-macro",
- "qt-build-utils",
  "static_assertions",
- "thiserror",
 ]
 
 [[package]]
 name = "cxx-qt-build"
-version = "0.7.2"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4cee79cc965fc86eece3c84896d30b075a49b98dce784c7f874a8b6827536239"
+checksum = "9e097b99f49792922a72a8ca35d9391762e48e63363d6998255be1f2ca1edf69"
 dependencies = [
  "cc",
  "codespan-reporting 0.11.1",
+ "convert_case",
  "cxx-gen",
  "cxx-qt-gen",
+ "cxx-qt-lib-headers",
  "proc-macro2",
  "qt-build-utils",
  "quote",
- "serde",
- "serde_json",
  "version_check",
 ]
 
 [[package]]
 name = "cxx-qt-gen"
-version = "0.7.2"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa5e6dd2c802128a9cd3c6f295b4aa3239d5bc67fa366b2e08fb895baea85b1f"
+checksum = "ede7c73dbfbcc234d8826919e257830c1789db2cac586546a87d2a82e3cbe5d5"
 dependencies = [
  "clang-format",
  "convert_case",
@@ -180,21 +192,27 @@ dependencies = [
 
 [[package]]
 name = "cxx-qt-lib"
-version = "0.7.2"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42e4ea0cf8e4b89b81ca92f3e6ad9d4b73f493e7616d46a64a73153731dc14bc"
+checksum = "002f1a6119bcb7dfec67eb7c0803a7b1d595dc54610559faeac35133f22a5880"
 dependencies = [
  "cxx",
- "cxx-qt",
- "cxx-qt-build",
+ "cxx-build",
+ "cxx-qt-lib-headers",
  "qt-build-utils",
 ]
 
 [[package]]
-name = "cxx-qt-macro"
-version = "0.7.2"
+name = "cxx-qt-lib-headers"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "48c4c602fd8a942cb1986df9255e3fd8613cddb6e0e383119f2eb5450dc0ab12"
+checksum = "9abdeab6b77cfc5a53b724f3f62a37bcb5ac1423cccc2dba4c134f4273440b8c"
+
+[[package]]
+name = "cxx-qt-macro"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "699e8a668c03b03419b084960d72eed253632bb16349b33fd0a0c893b61b664c"
 dependencies = [
  "cxx-qt-gen",
  "proc-macro2",
@@ -294,9 +312,9 @@ checksum = "f4c7245a08504955605670dbf141fceab975f15ca21570696aebe9d2e71576bd"
 
 [[package]]
 name = "itertools"
-version = "0.13.0"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "413ee7dfc52ee1a4949ceeb7dbc8a33f2d6c088194d9f922fb8318faf1f01186"
+checksum = "b1c173a5686ce8bfa551b3563d0c2170bf24ca44da99c7ca4bfdab5418c3fe57"
 dependencies = [
  "either",
 ]
@@ -400,9 +418,9 @@ dependencies = [
 
 [[package]]
 name = "qt-build-utils"
-version = "0.7.2"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ce2f932be2cc04afebe74dc6f434377dd53ea63f562ad14c99176f01267a8917"
+checksum = "d59c828fe2434dad34dd0c30a4ba037509b61dad92a55baf0dc42699e6aa2f10"
 dependencies = [
  "cc",
  "thiserror",
@@ -464,6 +482,12 @@ name = "ryu"
 version = "1.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "28d3b2b1366ec20994f1fd18c3c594f05c5dd4bc44d8bb0c1c632c8d6829481f"
+
+[[package]]
+name = "scratch"
+version = "1.0.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d68f2ec51b097e4c1a75b681a8bec621909b5e91f15bb7b840c4f2f7b01148b2"
 
 [[package]]
 name = "serde"
@@ -587,9 +611,9 @@ checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
 
 [[package]]
 name = "versions"
-version = "6.3.2"
+version = "5.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f25d498b63d1fdb376b4250f39ab3a5ee8d103957346abacd911e2d8b612c139"
+checksum = "c73a36bc44e3039f51fbee93e39f41225f6b17b380eb70cc2aab942df06b34dd"
 dependencies = [
  "itertools",
  "nom",
