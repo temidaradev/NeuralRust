@@ -1,9 +1,9 @@
 use activations::{IDENTITY, RELU, SIGMOID, TANH};
 use eframe::{egui, CreationContext};
 use egui::Context;
-use egui_graphs::{generate_random_graph, DefaultGraphView, Graph};
+use egui_graphs::{DefaultGraphView, Graph, GraphView, LayoutForceDirected, SettingsStyle};
 use network::Network;
-use petgraph::stable_graph::StableGraph;
+use petgraph::{stable_graph::StableGraph, Undirected};
 use std::vec;
 
 fn main() {
@@ -42,7 +42,7 @@ fn handle_gui() -> eframe::Result {
 }
 
 struct NeuralUI {
-    g: Graph,
+    g: Graph<(), (), Undirected>,
 }
 
 impl NeuralUI {
@@ -52,8 +52,8 @@ impl NeuralUI {
     }
 }
 
-fn generate_graph() -> StableGraph<(), ()> {
-    let mut g = StableGraph::new();
+pub fn generate_graph() -> StableGraph<(), (), Undirected> {
+    let mut g = StableGraph::<_, _, Undirected>::default();
 
     let a = g.add_node(());
     let b = g.add_node(());
@@ -69,7 +69,7 @@ fn generate_graph() -> StableGraph<(), ()> {
 impl eframe::App for NeuralUI {
     fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.add(&mut DefaultGraphView::new(&mut self.g));
+            ui.add(&mut GraphView::<_, _, _>::new(&mut self.g));
             ui.heading("My egui Application");
         });
     }
