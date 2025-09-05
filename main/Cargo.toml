@@ -5,7 +5,8 @@ edition = "2024"
 
 [dependencies]
 egui = { workspace = true }
-egui_plot = { workspace = true }
+egui_graphs = { workspace = true }
+petgraph = { workspace = true }
 eframe = { workspace = true, features = ["default"] }
 network = { workspace = true }
 matrix = { workspace = true }

@@ -1,11 +1,13 @@
 use activations::{IDENTITY, RELU, SIGMOID, TANH};
-use eframe::egui;
-use egui_plot::{Line, Plot, PlotPoints};
+use eframe::{egui, CreationContext};
+use egui::Context;
+use egui_graphs::{generate_random_graph, DefaultGraphView, Graph};
 use network::Network;
+use petgraph::stable_graph::StableGraph;
 use std::vec;
 
 fn main() {
-    handle_gui();
+    handle_gui().unwrap();
     let file = "log.json".to_string();
     let inputs = vec![
         vec![0.0, 0.0],
@@ -33,46 +35,42 @@ fn handle_gui() -> eframe::Result {
     };
 
     eframe::run_native(
-        "NeuralRust",
+        "NeuralUI",
         options,
-        Box::new(|cc| Ok(Box::<NeuralUI>::default())),
+        Box::new(|cc| Ok(Box::new(NeuralUI::new(cc)))),
     )
 }
 
 struct NeuralUI {
-    points: u32,
-    bridges: u32,
+    g: Graph,
 }
 
-impl Default for NeuralUI {
-    fn default() -> Self {
-        Self {
-            points: 0,
-            bridges: 0,
-        }
+impl NeuralUI {
+    fn new(_: &CreationContext<'_>) -> Self {
+        let g = generate_graph();
+        Self { g: Graph::from(&g) }
     }
+}
+
+fn generate_graph() -> StableGraph<(), ()> {
+    let mut g = StableGraph::new();
+
+    let a = g.add_node(());
+    let b = g.add_node(());
+    let c = g.add_node(());
+
+    g.add_edge(a, b, ());
+    g.add_edge(b, c, ());
+    g.add_edge(c, a, ());
+
+    g
 }
 
 impl eframe::App for NeuralUI {
     fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            let sin: PlotPoints = (0..1000)
-                .map(|i| {
-                    let x = i as f64 * 0.01;
-                    [x, x.sin()]
-                })
-                .collect();
-
-            // Create a line item with those points
-            let line = Line::new("sin", sin);
-
-            // Create and show the plot, adding the line item via the PlotUi
-            Plot::new("my_plot")
-                .view_aspect(2.0)
-                .show(ui, |plot_ui| plot_ui.line(line));
+            ui.add(&mut DefaultGraphView::new(&mut self.g));
             ui.heading("My egui Application");
-            ui.add(egui::Slider::new(&mut self.bridges, 0..=120).text("age"));
-            ui.label(format!("Hello '{}', age {}", self.points, self.bridges));
         });
     }
 }

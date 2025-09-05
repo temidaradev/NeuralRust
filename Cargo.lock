@@ -23,6 +23,10 @@ name = "accesskit"
 version = "0.19.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e25ae84c0260bdf5df07796d7cc4882460de26a2b406ec0e6c42461a723b271b"
+dependencies = [
+ "enumn",
+ "serde",
+]
 
 [[package]]
 name = "accesskit_atspi_common"
@@ -125,11 +129,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5a15f179cd60c4584b8a8c596927aadc462e27f2ca70c04e0071964a73ba7a75"
 dependencies = [
  "cfg-if",
- "getrandom",
+ "getrandom 0.3.3",
  "once_cell",
+ "serde",
  "version_check",
  "zerocopy",
 ]
+
+[[package]]
+name = "allocator-api2"
+version = "0.2.21"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "683d7910e743518b0e34f1186f92494becacb047c7b6bf616c96772180fef923"
 
 [[package]]
 name = "android-activity"
@@ -406,6 +417,12 @@ name = "autocfg"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
+
+[[package]]
+name = "base64"
+version = "0.22.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 
 [[package]]
 name = "bit-set"
@@ -749,6 +766,7 @@ checksum = "ebb57dec02e4cca6d70d02e29865f7e52dbd471383f4c3444dda7ee78d467360"
 dependencies = [
  "bytemuck",
  "emath",
+ "serde",
 ]
 
 [[package]]
@@ -801,6 +819,8 @@ dependencies = [
  "log",
  "nohash-hasher",
  "profiling",
+ "ron",
+ "serde",
  "smallvec",
  "unicode-segmentation",
 ]
@@ -864,14 +884,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "egui_plot"
-version = "0.33.0"
+name = "egui_graphs"
+version = "0.28.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "524318041a8ea90c81c738e8985f8ad9e3f9bed636b03c2ff37b218113ed5121"
+checksum = "3f1a4f357adce91fb5fa51edb89d7ea81dd18a2e9a66f01ece7298b1b13eea8d"
 dependencies = [
- "ahash",
  "egui",
- "emath",
+ "getrandom 0.2.16",
+ "instant",
+ "petgraph",
+ "rand",
+ "serde",
 ]
 
 [[package]]
@@ -881,6 +904,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b5c95b6d5571099bfa0ae9f4fdaef2c239bccb01d55339a082070259dc6f3b05"
 dependencies = [
  "bytemuck",
+ "serde",
 ]
 
 [[package]]
@@ -911,6 +935,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "enumn"
+version = "0.1.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2f9ed6b3789237c8a0c1c505af1c7eb2c560df6186f01b098c3a1064ea532f38"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "epaint"
 version = "0.32.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -926,6 +961,7 @@ dependencies = [
  "nohash-hasher",
  "parking_lot",
  "profiling",
+ "serde",
 ]
 
 [[package]]
@@ -1017,6 +1053,12 @@ name = "find-msvc-tools"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e178e4fba8a2726903f6ba98a6d221e76f9c12c650d5dc0e6afdc50677b49650"
+
+[[package]]
+name = "fixedbitset"
+version = "0.5.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1d674e81391d1e1ab681a28d99df07927c6d4aa5b027d7da16ba32d1d21ecd99"
 
 [[package]]
 name = "flate2"
@@ -1138,6 +1180,19 @@ dependencies = [
 
 [[package]]
 name = "getrandom"
+version = "0.2.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "335ff9f135e4384c8150d6f27c6daed433577f86b4750418338c01a1a2528592"
+dependencies = [
+ "cfg-if",
+ "js-sys",
+ "libc",
+ "wasi 0.11.1+wasi-snapshot-preview1",
+ "wasm-bindgen",
+]
+
+[[package]]
+name = "getrandom"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "26145e563e54f2cadc477553f1ec5ee650b00862f0a58bcd12cbdc5f0ea2d2f4"
@@ -1145,7 +1200,7 @@ dependencies = [
  "cfg-if",
  "libc",
  "r-efi",
- "wasi",
+ "wasi 0.14.3+wasi-0.2.4",
 ]
 
 [[package]]
@@ -1305,6 +1360,8 @@ version = "0.15.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1"
 dependencies = [
+ "allocator-api2",
+ "equivalent",
  "foldhash",
 ]
 
@@ -1464,6 +1521,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "instant"
+version = "0.1.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e0242819d153cba4b4b05a5a8f2a7e9bbf97b6055b2a002b395c96b5ff3c0222"
+dependencies = [
+ "cfg-if",
+]
+
+[[package]]
 name = "itoa"
 version = "1.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1497,7 +1563,7 @@ version = "0.1.34"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9afb3de4395d6b3e67a780b6de64b51c978ecf11cb9a462c66be7d4ca9039d33"
 dependencies = [
- "getrandom",
+ "getrandom 0.3.3",
  "libc",
 ]
 
@@ -1608,9 +1674,10 @@ dependencies = [
  "activations",
  "eframe",
  "egui",
- "egui_plot",
+ "egui_graphs",
  "matrix",
  "network",
+ "petgraph",
 ]
 
 [[package]]
@@ -2178,6 +2245,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220"
 
 [[package]]
+name = "petgraph"
+version = "0.8.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "54acf3a685220b533e437e264e4d932cfbdc4cc7ec0cd232ed73c08d03b8a7ca"
+dependencies = [
+ "fixedbitset",
+ "hashbrown",
+ "indexmap",
+ "serde",
+ "serde_derive",
+]
+
+[[package]]
 name = "pin-project"
 version = "1.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2382,7 +2462,7 @@ version = "0.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "99d9a13982dcf210057a8a78572b2217b667c3beacbf3a0d8b454f6f82837d38"
 dependencies = [
- "getrandom",
+ "getrandom 0.3.3",
 ]
 
 [[package]]
@@ -2420,6 +2500,19 @@ name = "renderdoc-sys"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "19b30a45b0cd0bcca8037f3d0dc3421eaf95327a17cad11964fb8179b4fc4832"
+
+[[package]]
+name = "ron"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "beceb6f7bf81c73e73aeef6dd1356d9a1b2b4909e1f0fc3e59b034f9572d7b7f"
+dependencies = [
+ "base64",
+ "bitflags 2.9.4",
+ "serde",
+ "serde_derive",
+ "unicode-ident",
+]
 
 [[package]]
 name = "rustc-hash"
@@ -2713,7 +2806,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "15b61f8f20e3a6f7e0649d825294eaf317edce30f82cf6026e7e4cb9222a7d1e"
 dependencies = [
  "fastrand",
- "getrandom",
+ "getrandom 0.3.3",
  "once_cell",
  "rustix 1.0.8",
  "windows-sys 0.60.2",
@@ -2942,6 +3035,12 @@ dependencies = [
  "same-file",
  "winapi-util",
 ]
+
+[[package]]
+name = "wasi"
+version = "0.11.1+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b"
 
 [[package]]
 name = "wasi"
