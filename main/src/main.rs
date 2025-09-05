@@ -1,4 +1,4 @@
-use activations::{IDENTITY, RELU, SIGMOID, TANH};
+use activations::SIGMOID;
 use network::Network;
 use std::vec;
 
