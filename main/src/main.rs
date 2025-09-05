@@ -6,6 +6,8 @@ use network::Network;
 use petgraph::{stable_graph::StableGraph, Undirected};
 use std::vec;
 
+mod graph;
+
 fn main() {
     handle_gui().unwrap();
     let file = "log.json".to_string();
