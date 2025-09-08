@@ -17,6 +17,10 @@ git clone https://github.com/temidaradev/NeuralRust.git
 cd NeuralRust
 ```
 
+Or install from release:
+
+[v0.1](https://github.com/temidaradev/NeuralRust/releases/tag/v0.1)
+
 Build the project:
 
 ```sh
