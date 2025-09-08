@@ -20,7 +20,7 @@ cd NeuralRust
 Build the project:
 
 ```sh
-cargo build
+cargo build --release
 ```
 
 ## Usage
