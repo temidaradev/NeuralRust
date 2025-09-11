@@ -19,7 +19,7 @@ cd NeuralRust
 
 Or install from release:
 
-The executable file is only for aarch64 macbooks!
+There is only aarch64 mac and x86_64 windows executables!
 [v0.1](https://github.com/temidaradev/NeuralRust/releases/tag/v0.1)
 
 Build the project:
